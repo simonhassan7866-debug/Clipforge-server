@@ -1,16 +1,8 @@
-FROM node:18-bullseye
-
-RUN apt-get update && apt-get install -y ffmpeg
-
+FROM node:18-alpine
+RUN apk add --no-cache ffmpeg
 WORKDIR /app
-
 COPY package*.json ./
-
 RUN npm install
-
 COPY . .
-
 EXPOSE 5000
-
 CMD ["npm", "start"]
-
